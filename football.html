@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football - Sports Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1929 0%, #132f4c 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #00d4d4;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00d4d4;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00d4d4;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+            gap: 15px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #00d4d4 0%, #0a7f8c 100%);
+            padding: 150px 20px 100px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        /* Content Section */
+        .content-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #00d4d4;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #00d4d4;
+            padding-bottom: 15px;
+        }
+
+        /* Information Section */
+        .info-box {
+            background: rgba(0, 212, 212, 0.1);
+            border-left: 4px solid #00d4d4;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .info-box h3 {
+            color: #00d4d4;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .info-box p {
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        /* Tournaments Grid */
+        .tournament-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .tournament-card {
+            background: rgba(0, 212, 212, 0.08);
+            border: 2px solid #00d4d4;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .tournament-card:hover {
+            background: rgba(0, 212, 212, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 212, 0.2);
+        }
+
+        .tournament-card h3 {
+            color: #00d4d4;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .tournament-card p {
+            color: #bbb;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .tournament-badge {
+            display: inline-block;
+            background: #00d4d4;
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Players Section */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .player-card {
+            background: rgba(0, 212, 212, 0.08);
+            border: 2px solid #00d4d4;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .player-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 212, 212, 0.3);
+        }
+
+        .player-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #00d4d4, #0a7f8c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            border-bottom: 2px solid #00d4d4;
+        }
+
+        .player-info {
+            padding: 25px;
+        }
+
+        .player-info h3 {
+            color: #00d4d4;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .player-position {
+            color: #00d4d4;
+            font-weight: bold;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .player-stats {
+            background: rgba(0, 212, 212, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #bbb;
+        }
+
+        .stat-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-label {
+            color: #00d4d4;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            border-top: 3px solid #00d4d4;
+            padding: 30px 20px;
+            text-align: center;
+            color: #999;
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .tournament-grid,
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <div class="logo">⚽ Football</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Football</h1>
+        <p>The Beautiful Game - Passion, Skill, and Global Excellence</p>
+    </section>
+
+    <!-- Information Section -->
+    <section class="content-section">
+        <h2 class="section-title">About Football</h2>
+        
+        <div class="info-box">
+            <h3>Overview</h3>
+            <p>
+                Football, known as soccer in North America, is the world's most popular sport. Played by over 250 million 
+                athletes in more than 200 countries, football combines skill, strategy, teamwork, and athleticism. The sport 
+                is governed internationally by FIFA and is played professionally at the highest levels across Europe, South 
+                America, Asia, and beyond. With its simple rules and universal appeal, football has become a global phenomenon 
+                that unites billions of fans across continents.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h3>Key Rules</h3>
+            <p>
+                Football is played between two teams of 11 players each on a rectangular pitch. The objective is to score goals 
+                by directing the ball into the opposing team's net. Players can use any part of their body except their hands and 
+                arms (except the goalkeeper). A standard match lasts 90 minutes, divided into two 45-minute halves. The team with 
+                the most goals at the end wins the match.
+            </p>
+        </div>
+    </section>
+
+    <!-- Tournaments Section -->
+    <section class="content-section">
+        <h2 class="section-title">Major Tournaments</h2>
+        
+        <div class="tournament-grid">
+            <div class="tournament-card">
+                <h3>FIFA World Cup</h3>
+                <p><strong>Frequency:</strong> Every 4 years</p>
+                <p><strong>Teams:</strong> 32 national teams</p>
+                <p><strong>Description:</strong> The most prestigious football tournament in the world, featuring the best 
+                national teams competing for ultimate glory.</p>
+                <span class="tournament-badge">International</span>
+            </div>
+
+            <div class="tournament-card">
+                <h3>UEFA Champions League</h3>
+                <p><strong>Frequency:</strong> Annually</p>
+                <p><strong>Teams:</strong> Top European clubs</p>
+                <p><strong>Description:</strong> The premier club competition in Europe, showcasing the continent's elite teams 
+                and world-class players.</p>
+                <span class="tournament-badge">Club Competition</span>
+            </div>
+
+            <div class="tournament-card">
+                <h3>La Liga</h3>
+                <p><strong>Frequency:</strong> Annually</p>
+                <p><strong>Teams:</strong> 20 Spanish clubs</p>
+                <p><strong>Description:</strong> Spain's top professional football league, famous for technical excellence and 
+                competitive intensity.</p>
+                <span class="tournament-badge">League</span>
+            </div>
+
+            <div class="tournament-card">
+                <h3>Premier League</h3>
+                <p><strong>Frequency:</strong> Annually</p>
+                <p><strong>Teams:</strong> 20 English clubs</p>
+                <p><strong>Description:</strong> England's top football division, known for its exciting, fast-paced style and 
+                global fan base.</p>
+                <span class="tournament-badge">League</span>
+            </div>
+
+            <div class="tournament-card">
+                <h3>Copa America</h3>
+                <p><strong>Frequency:</strong> Every 4 years</p>
+                <p><strong>Teams:</strong> 10 South American nations</p>
+                <p><strong>Description:</strong> South America's premier international tournament, featuring traditional rivals 
+                and passionate competition.</p>
+                <span class="tournament-badge">International</span>
+            </div>
+
+            <div class="tournament-card">
+                <h3>UEFA Euro</h3>
+                <p><strong>Frequency:</strong> Every 4 years</p>
+                <p><strong>Teams:</strong> 24 European nations</p>
+                <p><strong>Description:</strong> Europe's flagship international tournament with intense rivalries and top-level 
+                football showcased.</p>
+                <span class="tournament-badge">International</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Players Section -->
+    <section class="content-section">
+        <h2 class="section-title">Legendary Players</h2>
+        
+        <div class="players-grid">
+            <!-- Player 1: Cristiano Ronaldo -->
+            <div class="player-card">
+                <div class="player-image">⚽</div>
+                <div class="player-info">
+                    <h3>Cristiano Ronaldo</h3>
+                    <p class="player-position">Forward / Winger</p>
+                    <div class="player-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Nationality:</span>
+                            <span>Portugal</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Height:</span>
+                            <span>6'2" (187 cm)</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Goals:</span>
+                            <span>890+ Career</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Awards:</span>
+                            <span>5 Ballon d'Or</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Specialty:</span>
+                            <span>Heading, Free Kicks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Player 2: Lionel Messi -->
+            <div class="player-card">
+                <div class="player-image">🌟</div>
+                <div class="player-info">
+                    <h3>Lionel Messi</h3>
+                    <p class="player-position">Forward / Winger</p>
+                    <div class="player-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Nationality:</span>
+                            <span>Argentina</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Height:</span>
+                            <span>5'7" (170 cm)</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Goals:</span>
+                            <span>800+ Career</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Awards:</span>
+                            <span>8 Ballon d'Or</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Specialty:</span>
+                            <span>Dribbling, Playmaking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Player 3: Pelé -->
+            <div class="player-card">
+                <div class="player-image">👑</div>
+                <div class="player-info">
+                    <h3>Pelé</h3>
+                    <p class="player-position">Forward</p>
+                    <div class="player-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Nationality:</span>
+                            <span>Brazil</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Height:</span>
+                            <span>5'8" (173 cm)</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Goals:</span>
+                            <span>1000+ Career</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Titles:</span>
+                            <span>3 World Cups</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Legacy:</span>
+                            <span>Football Legend</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Sports Hub - Football Edition. All rights reserved.</p>
+    </footer>
+</body>
+</html>

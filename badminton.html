@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badminton - Sports Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1929 0%, #132f4c 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #00d4d4;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00d4d4;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00d4d4;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+            gap: 15px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #00d4d4 0%, #0a7f8c 100%);
+            padding: 150px 20px 100px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        /* Content Section */
+        .content-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #00d4d4;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 3px solid #00d4d4;
+            padding-bottom: 15px;
+        }
+
+        /* Information Section */
+        .info-box {
+            background: rgba(0, 212, 212, 0.1);
+            border-left: 4px solid #00d4d4;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .info-box h3 {
+            color: #00d4d4;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .info-box p {
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        /* Tournaments Grid */
+        .tournament-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .tournament-card {
+            background: rgba(0, 212, 212, 0.08);
+            border: 2px solid #00d4d4;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s;
+        }
+
+        .tournament-card:hover {
+            background: rgba(0, 212, 212, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 212, 0.2);
+        }
+
+        .tournament-card h3 {
+            color: #00d4d4;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .tournament-card p {
+            color: #bbb;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .tournament-badge {
+            display: inline-block;
+            background: #00d4d4;
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Players Section */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .player-card {
+            background: rgba(0, 212, 212, 0.08);
+            border: 2px solid #00d4d4;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .player-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 212, 212, 0.3);
+        }
+
+        .player-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #00d4d4, #0a7f8c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            border-bottom: 2px solid #00d4d4;
+        }
+
+        .player-info {
+            padding: 25px;
+        }
+
+        .player-info h3 {
+            color: #00d4d4;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .player-position {
+            color: #00d4d4;
+            font-weight: bold;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .player-stats {
+            background: rgba(0, 212, 212, 0.1);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #bbb;
+        }
+
+        .stat-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-label {
+            color: #00d4d4;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            border-top: 3px solid #00d4d4;
+            padding: 30px 20px;
+            text-align: center;
+            color: #999;
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .tournament-grid,
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <div class="logo">🏸 Badminton</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Badminton</h1>
+        <p>Precision & Speed - A Sport of Tactical Excellence</p>
+    </section>
+
+    <!-- Information Section -->
+    <section class="content-section">
+        <h2 class="section-title">About Badminton</h2>
+        
+        <div class="info-box">
+            <h3>Overview</h3>
+            <p>
+                Badminton is an ancient sport with roots dating back centuries, now played competitively by millions worldwide. 
+                Known for its incredible speed, precision, and tactical depth, badminton has evolved from a leisure activity into 
+                one of the most technically demanding racquet sports. The sport emphasizes agility, hand-eye coordination, and 
+                strategic thinking. From recreational play in backyards to professional tournaments on the world stage, badminton 
+                captivates audiences with breathtaking rallies and displays of extraordinary athleticism.
+            </p>
+        </div>
+
+        <div class="info-box">
+            <h3>Key Rules</h3>
+            <p>
+                Badminton is played on a rectangular court 44 feet long and 20 feet wide (doubles) or 17 feet wide (singles). 
+                Players use racquets to hit a shuttlecock (birdie) over a net 30 inches high. The objective is to hit the 
+                shuttlecock so the opponent cannot return it. Points are scored when the opponent fails to return the shuttlecock 
+                or commits a fault. A match typically consists of 2 out of 3 games, with games played to 21 points (win by 2). 
+                The serve must be underhand and diagonal across the net.
+            </p>
+        </div>
+    </section>
+
+    <!-- Tournaments Section -->
+    <section class="content-section">
+        <h2 class="section-title">Major Tournaments</h2>
+        
+        <div class="tournament-grid">
+            <div class="tournament-card">
+                <h3>Badminton World Federation (BWF) World Championships</h3>
+                <p><strong>Frequency:</strong> Annually</p>
+                <p><strong>Format:</strong> Individual events</p>
+                <p><strong>Description:</strong> The most prestigious individual badminton championship, featuring singles, doubles, 
+                and mixed doubles competitions.</p>
+                <span class="tournament-badge">International</span>
+            </div>
+
+            <div class="tournament-card">
+                <h3>Thomas Cup</h3>
+                <p><strong>Frequency:</strong> Every 2 years</p>
+                <p><strong>Teams:</strong> Men's national teams</p>
+                <p><strong>Description:</strong> The world's premier men's team badminton championship featuring intense international 
+                competition and tradition.</p>
+                <span class="tournament-badge">Team Competition</span>
+            </div>
+
+            <div class="tournament-card">
+                <h3>Uber Cup</h3>
+                <p><strong>Frequency:</strong> Every 2 years</p>
+                <p><strong>Teams:</strong> Women's national teams</p>
+                <p><strong>Description:</strong> The world's premier women's team badminton championship showcasing top female 
+                players competing for national pride.</p>
+                <span class="tournament-badge">Team Competition</span>
+            </div>
+
+            <div class="tournament-card">
+                <h3>All England Open Badminton Championships</h3>
+                <p><strong>Frequency:</strong> Annually</p>
+                <p><strong>Status:</strong> Historic tournament</p>
+                <p><strong>Description:</strong> One of the oldest and most prestigious badminton tournaments, dating back to 1899, 
+                attracting world-class players.</p>
+                <span class="tournament-badge">Classic</span>
+            </div>
+
+            <div class="tournament-card">
+                <h3>Olympic Games</h3>
+                <p><strong>Frequency:</strong> Every 4 years</p>
+                <p><strong>Format:</strong> Individual and mixed events</p>
+                <p><strong>Description:</strong> Badminton's presence at the Olympics showcasing top talent and inspiring millions 
+                of fans worldwide.</p>
+                <span class="tournament-badge">International</span>
+            </div>
+
+            <div class="tournament-card">
+                <h3>Malaysian Open Super Series</h3>
+                <p><strong>Frequency:</strong> Annually</p>
+                <p><strong>Location:</strong> Malaysia</p>
+                <p><strong>Description:</strong> A major BWF Super Series tournament attracting elite badminton players from across 
+                the globe.</p>
+                <span class="tournament-badge">Super Series</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Players Section -->
+    <section class="content-section">
+        <h2 class="section-title">Champion Players</h2>
+        
+        <div class="players-grid">
+            <!-- Player 1: Lin Dan -->
+            <div class="player-card">
+                <div class="player-image">🏸</div>
+                <div class="player-info">
+                    <h3>Lin Dan</h3>
+                    <p class="player-position">Men's Singles Champion</p>
+                    <div class="player-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Nationality:</span>
+                            <span>China</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Ranking Peak:</span>
+                            <span>World #1</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">World Titles:</span>
+                            <span>5 Championships</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Olympic Medals:</span>
+                            <span>2 Gold</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Known For:</span>
+                            <span>Technique, Strategy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Player 2: Carolina Marin -->
+            <div class="player-card">
+                <div class="player-image">⭐</div>
+                <div class="player-info">
+                    <h3>Carolina Marin</h3>
+                    <p class="player-position">Women's Singles Champion</p>
+                    <div class="player-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Nationality:</span>
+                            <span>Spain</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Ranking Peak:</span>
+                            <span>World #1</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">World Titles:</span>
+                            <span>2 Championships</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Olympic Medals:</span>
+                            <span>1 Gold</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Known For:</span>
+                            <span>Speed, Aggression</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Player 3: Viktor Axelsen -->
+            <div class="player-card">
+                <div class="player-image">🏆</div>
+                <div class="player-info">
+                    <h3>Viktor Axelsen</h3>
+                    <p class="player-position">Men's Singles Champion</p>
+                    <div class="player-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Nationality:</span>
+                            <span>Denmark</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Ranking:</span>
+                            <span>World #1</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">World Titles:</span>
+                            <span>2 Championships</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Olympic Gold:</span>
+                            <span>Tokyo 2020</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Known For:</span>
+                            <span>Power, Consistency</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Sports Hub - Badminton Edition. All rights reserved.</p>
+    </footer>
+</body>
+</html>
